@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Confira todos os links da Candy Less Dream em um só lugar. Ifood, WhatsApp, Cardápio e mais!" />
+  <title>Candy Less Dream - Links</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/Gabriellima784/images/a7b26485f1d7be5ffd553c4a096730436cfceacc/C%C3%B3pia%20de%20logo%20candy%20(2).png" type="image/png" />
+  <style>
+    :root {
+      --primary-color: #a0d6c6;
+      --button-color: #e4aeb2;
+      --button-hover: #d69599;
+      --text-color: #ffffff;
+      --footer-line: #6c9f8f;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layout-line {
+      width: 100%;
+      height: 50px;
+      background-color: var(--footer-line);
+      position: fixed;
+      left: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffffcc;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .layout-line.top {
+      top: 0;
+    }
+
+    .layout-line.bottom {
+      bottom: 0;
+    }
+
+    .background-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.08;
+      filter: blur(1px);
+      max-width: 90%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Container principal com fadeIn + subida */
+    main.container {
+      text-align: center;
+      padding: 2rem 1rem;
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      /* animação fadeIn e translateY */
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    /* Logo com animação pulse */
+    .logo {
+      width: 60%;
+      border-radius: 50%;
+      max-height: 180px;
+      object-fit: contain;
+      animation: pulse 3s ease-in-out infinite;
+      margin: 0 auto;
+      display: block;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 3px rgba(255,255,255,0.6));
+      }
+      50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
+      }
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    /* Botões com animação fadeIn (subindo) e delay em cascata */
+    .button-link {
+      display: block;
+      background-color: var(--button-color);
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 1rem;
+      margin: 0.7rem 0;
+      border-radius: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+
+      opacity: 0;
+      transform: translateY(10px);
+      animation-fill-mode: forwards;
+      animation-name: fadeIn;
+      animation-duration: 0.6s;
+      animation-timing-function: ease-out;
+      will-change: opacity, transform;
+    }
+
+    .button-link:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+    .button-link:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+    .button-link:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    .button-link:hover,
+    .button-link:focus {
+      background-color: var(--button-hover);
+      transform: scale(1.03);
+      outline: none;
+    }
+
+    .button-link:active {
+      transform: scale(0.98);
+    }
+
+    .button-link:focus {
+      outline: 2px solid #ffffff;
+    }
+
+    footer {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .button-link {
+        font-size: 1rem;
+        padding: 0.9rem;
+      }
+
+      .logo {
+        width: 150px;
+      }
+
+      .background-logo {
+        max-width: 100%;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Partículas bolinhas */
+    .particle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+      will-change: transform, opacity;
+    }
+
+    /* Estrelas */
+    .star {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background: transparent;
+      pointer-events: none;
+      animation: fall linear infinite;
+      opacity: 0.7;
+      z-index: 1;
+      will-change: transform, opacity;
+    }
+    .star svg {
+      width: 100%;
+      height: 100%;
+      fill: rgba(255, 255, 255, 0.8);
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
+    }
+
+    /* Brilhos (losangos) */
+    .glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.6);
+      transform: rotate(45deg);
+      border-radius: 1px;
+      pointer-events: none;
+      animation: fall linear infinite;
+      opacity: 0.6;
+      z-index: 1;
+      will-change: transform, opacity;
+    }
+
+    /* Animação queda partículas */
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(120vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Linha superior -->
+  <div class="layout-line top"></div>
+
+  <!-- Logo de fundo -->
+  <img 
+    src="https://raw.githubusercontent.com/Gabriellima784/images/a7b26485f1d7be5ffd553c4a096730436cfceacc/C%C3%B3pia%20de%20logo%20candy%20(2).png" 
+    alt="Logo de fundo" 
+    class="background-logo" 
+  />
+
+  <!-- Partículas minimalistas -->
+  <script>
+    const body = document.body;
+
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.animationDuration = `${8 + Math.random() * 7}s`; // mais rápido (8-15s)
+      star.style.animationDelay = `${Math.random() * 2}s`; // delay curto
+      star.style.width = `${6 + Math.random() * 6}px`;
+      star.style.height = star.style.width;
+      star.style.opacity = 0.5 + Math.random() * 0.5;
+
+      star.innerHTML = `
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+        </svg>
+      `;
+
+      return star;
+    }
+
+    function createGlow() {
+      const glow = document.createElement('div');
+      glow.classList.add('glow');
+      glow.style.left = `${Math.random() * 100}vw`;
+      glow.style.animationDuration = `${8 + Math.random() * 7}s`; // mais rápido (8-15s)
+      glow.style.animationDelay = `${Math.random() * 2}s`;
+      glow.style.width = `${4 + Math.random() * 4}px`;
+      glow.style.height = glow.style.width;
+      glow.style.opacity = 0.3 + Math.random() * 0.4;
+      return glow;
+    }
+
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.animationDuration = `${10 + Math.random() * 10}s`; // partículas um pouco mais lentas que estrelas
+      particle.style.animationDelay = `${Math.random() * 2}s`;
+      const size = 4 + Math.random() * 6;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.opacity = 0.3 + Math.random() * 0.5;
+      return particle;
+    }
+
+    const totalParticles = 40;
+    const totalStars = 15;
+    const totalGlows = 15;
+
+    for (let i = 0; i < totalParticles; i++) {
+      body.appendChild(createParticle());
+    }
+    for (let i = 0; i < totalStars; i++) {
+      body.appendChild(createStar());
+    }
+    for (let i = 0; i < totalGlows; i++) {
+      body.appendChild(createGlow());
+    }
+  </script>
+
+  <!-- Conteúdo principal -->
+  <main class="container">
+    <img 
+      src="https://raw.githubusercontent.com/Gabriellima784/images/e23bb25a71848eddeb7789342e941d39a60cba6b/C%C3%B3pia%20de%20logo%20candy%20(2)%20-%20Copia.png" 
+      alt="Logo Candy Less Dream" 
+      class="logo" 
+    />
+
+    <nav>
+      <a href="https://www.ifood.com.br/delivery/brasilia-df/candyless-dream-recanto-feliz-planaltina/08557d8d-203a-45d4-9127-16682e053ccb?utm_source=orderfood&fbclid=PAQ0xDSwLO7pFleHRuA2FlbQIxMAABpyJplLBYDjm1J99cLCBtU9fHE7ZmQbRJ86XYHVvNFaftBCfM-NxsH3Obn1px_aem_Xsp9nMiQ8eD1c7_Ik6t2rQ" target="_blank" rel="noopener noreferrer" class="button-link" aria-label="Abrir Ifood">
+        Ifood
+      </a>
+      <a href="https://wa.me/message/IDOJDH4G334BJ1" target="_blank" rel="noopener noreferrer" class="button-link" aria-label="Abrir WhatsApp">
+        WhatsApp
+      </a>
+      <a href="https://menu.candylessdream.com" target="_blank" rel="noopener noreferrer" class="button-link" aria-label="Abrir menu online">
+        Menu Online
+      </a>
+    </nav>
+
+    <footer>
+      © 2025 Candy Less Dream
+    </footer>
+  </main>
+
+  <!-- Linha inferior -->
+  <div class="layout-line bottom">© 2025 Candy Less Dream</div>
+
+</body>
+</html>
